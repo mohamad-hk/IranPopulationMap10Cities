@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 from ExtractData import pre_processing_data
 
-population_list, df = pre_processing_data()
+cities, population_list, df = pre_processing_data()
 fig = plt.figure()
 ax = fig.add_axes([0.1, 0.1, 0.8, 0.8])
 
@@ -20,7 +20,8 @@ m.drawcountries()
 x, y = m(df["lon_decimal"].values, df["lat_decimal"].values)
 
 m.scatter(x, y, color='red', marker='o', zorder=5, s=np.sqrt(population_list) * 0.3)
-
+for i in range(len(cities)):
+    plt.text(x[i], y[i], cities[i], fontsize=8, ha='center', va='bottom', color='black', zorder=5)
 
 
 ax.set_title('Iran Population Map')
